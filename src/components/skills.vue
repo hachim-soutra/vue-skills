@@ -4,7 +4,7 @@
     <form @submit.prevent="addSkill">
         <input type="text" v-validate="'min:5'" name="skill" placeholder="Enter a skill you have.." v-model="skill" >
         {{ skill }}
-         <transition name="fade">
+         <transition name="bounce">
         <p v-if="errors.has('skill')">
           <b>Please correct the following error(s):</b>
           {{ errors.first('skill')}}
@@ -14,9 +14,9 @@
     
     <div class="holder">
       <ul>
-       
-          <li v-for=" (data,index) in skills" :key='index'> {{index}} - {{data.skill}} <i class="fa fa-window-close" @click="deleteSkill(index)" aria-hidden="true"></i> </li>
         
+          <li v-for=" (data,index) in skills" :key='index'> {{index}} - {{data.skill}} <i class="fa fa-window-close" @click="deleteSkill(index)" aria-hidden="true"></i> </li>
+       
       </ul>
 
       <p v-if="skills.length >= 1"> you have {{skills.length}} skills </p>
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     addSkill(){
-      this.$validateAll().then((res) =>{
+      this.$validator.validateAll().then((res) =>{
         if(res){
             this.skills.push({skill :this.skill});
             this.skill = ''; 

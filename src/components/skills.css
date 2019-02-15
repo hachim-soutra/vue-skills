@@ -31,17 +31,34 @@ input {
     color: gray;
   }
 
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
+  .bounce-enter-active {
+    animation: bounce-in .5s;
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
   }
-  
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
   .container {
     box-shadow: 0px 0px 40px lightgray;
   }
   .fa-window-close{
     float: right;
     cursor: pointer;
+  }
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+  .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(30px);
   }
